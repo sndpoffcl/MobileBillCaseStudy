@@ -44,6 +44,12 @@ public class PostpaidAccount {
 		this.plan = plan;
 	}
 
+	public PostpaidAccount(Customer customer, Plan plan, HashMap<Integer, Bill> bills) {
+		this.customer = customer;
+		this.plan = plan;
+		this.bills= bills;
+	}
+
 	public long getMobileNo() {
 		return mobileNo;
 	}
