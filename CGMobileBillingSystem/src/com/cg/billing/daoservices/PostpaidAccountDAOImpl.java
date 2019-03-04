@@ -46,4 +46,20 @@ public class PostpaidAccountDAOImpl implements PostpaidAccountDAO {
 		return (List<PostpaidAccount>)query.getResultList();
 	}
 
+	@Override
+	public boolean deleteOne(PostpaidAccount posAccount) {
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
+		entityManager.remove(posAccount);
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		return true;
+	}
+
+	@Override
+	public boolean deleteAll() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

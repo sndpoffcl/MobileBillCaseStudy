@@ -9,5 +9,7 @@ public interface BillDAO {
   boolean update(Bill bill);
   Bill findOne(int billId);
   List<Bill> findAll();
+  boolean deleteOne(int billId);
+  boolean deleteAll();
   
 }

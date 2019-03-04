@@ -7,6 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import com.cg.billing.beans.Bill;
 import com.cg.billing.beans.Customer;
 
 public class CustomerDAOImpl implements CustomerDAO{
@@ -43,6 +44,23 @@ public class CustomerDAOImpl implements CustomerDAO{
 	public List<Customer> findAll() {
 		Query query = entityManagerFactory.createEntityManager().createQuery("from Customer c",Customer.class);
 		return (List<Customer>)query.getResultList();
+	}
+
+	@Override
+	public boolean deleteOne(int customerId) {
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		//Bill bill = entityManager.find(Bill.class, billId);
+		entityManager.getTransaction().begin();
+		entityManager.remove(entityManager.find(Customer.class, customerId));
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		return true;
+	}
+
+	@Override
+	public boolean deleteAll() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

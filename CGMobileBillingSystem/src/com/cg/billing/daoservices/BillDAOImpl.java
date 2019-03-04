@@ -45,4 +45,20 @@ public class BillDAOImpl implements BillDAO{
 		return (List<Bill>)query.getResultList();
 	}
 
+	@Override
+	public boolean deleteOne(int billId) {
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		//Bill bill = entityManager.find(Bill.class, billId);
+		entityManager.getTransaction().begin();
+		entityManager.remove(entityManager.find(Bill.class, billId));
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		return true;
+	}
+
+	@Override
+	public boolean deleteAll() {
+		return false;
+	}
+
 }

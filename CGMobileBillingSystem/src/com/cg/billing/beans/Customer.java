@@ -5,18 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.MapKey;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderColumn;
 @Entity
 public class Customer {
 	@Id
@@ -106,7 +98,7 @@ public class Customer {
 	}
 
 	public void setAddress(List<Address> address) {
-		this.address = address;
+		this.address = (ArrayList<Address>) address;
 	}
 
 	public Map<Long, PostpaidAccount> getPostpaidAccounts() {

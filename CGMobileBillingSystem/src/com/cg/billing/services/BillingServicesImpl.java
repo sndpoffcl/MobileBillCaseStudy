@@ -40,6 +40,7 @@ public class BillingServicesImpl implements BillingServices{
 	public int acceptCustomerDetails(String firstName, String lastName, String emailID, String dateOfBirth,
 			String billingAddressCity, String billingAddressState, int billingAddressPinCode, String homeAddressCity,
 			String homeAddressState, int homeAddressPinCode) {
+		
 		Customer customer  = new Customer(firstName , lastName , emailID , dateOfBirth,new ArrayList<Address>() ,new HashMap<Long, PostpaidAccount>() );
 		customer =  customerDaoServices.saveCustomer(customer);
 		return customer.getCustomerID();
@@ -146,21 +147,22 @@ public class BillingServicesImpl implements BillingServices{
 	@Override
 	public boolean changePlan(int customerID, long mobileNo, int planID)
 			throws CustomerDetailsNotFoundException, PostpaidAccountNotFoundException {
-		
+		getCustomerDetails(customerID).getPostpaidAccounts().get(mobileNo).setPlan(planDaoServices.findOne(planID));
 		return true;
 	}
 
 	@Override
 	public boolean closeCustomerPostPaidAccount(int customerID, long mobileNo)
 			throws CustomerDetailsNotFoundException, PostpaidAccountNotFoundException {
-		// TODO Auto-generated method stub
-		return false;
+		
+		PostpaidAccount posAccount = getCustomerDetails(customerID).getPostpaidAccounts().get(mobileNo);
+		return posDaoServices.deleteOne(posAccount);
+		
 	}
 
 	@Override
 	public boolean removeCustomerDetails(int customerID) throws CustomerDetailsNotFoundException {
-		// TODO Auto-generated method stub
-		return false;
+		return customerDaoServices.deleteOne(customerID);
 	}
 
 	@Override

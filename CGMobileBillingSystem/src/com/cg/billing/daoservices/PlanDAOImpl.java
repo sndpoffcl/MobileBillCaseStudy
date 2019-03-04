@@ -47,4 +47,20 @@ public class PlanDAOImpl implements PlanDAO {
 		return (List<Plan>)query.getResultList();
 	}
 
+	@Override
+	public boolean deleteOne(int planId) {
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
+		entityManager.remove(entityManager.find(Plan.class, planId));
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		return true;
+	}
+
+	@Override
+	public boolean deleteAll() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

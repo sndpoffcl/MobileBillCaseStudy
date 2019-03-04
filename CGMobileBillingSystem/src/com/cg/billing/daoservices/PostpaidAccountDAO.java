@@ -9,4 +9,7 @@ public interface PostpaidAccountDAO {
 	boolean update(PostpaidAccount posAccount);
 	PostpaidAccount findOne(long mobileNo);
 	List<PostpaidAccount> findAll();
+	boolean deleteOne(PostpaidAccount posAccount);
+	boolean deleteAll();
+	
 }

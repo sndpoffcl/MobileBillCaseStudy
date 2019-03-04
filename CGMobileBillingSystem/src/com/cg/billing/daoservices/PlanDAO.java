@@ -9,4 +9,6 @@ public interface PlanDAO  {
 	boolean update(Plan plan);
 	Plan findOne(int planId);
 	List<Plan> findAll();
+	boolean deleteOne(int planId);
+	boolean deleteAll();
 }

@@ -9,4 +9,6 @@ public interface CustomerDAO {
 	boolean upDateCustomer(Customer customer);
 	Customer findOne(int customerId);
 	List<Customer> findAll();
+	boolean deleteOne(int customerId);
+	boolean deleteAll();
 }
